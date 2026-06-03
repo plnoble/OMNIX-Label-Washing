@@ -1,0 +1,93 @@
+﻿
+> label-washing@0.0.0 lint
+> eslint .
+
+
+D:\Agent\Project\Label washing\src\App.tsx
+   62:54  error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    @typescript-eslint/no-explicit-any
+   63:56  error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    @typescript-eslint/no-explicit-any
+   83:7   error    Error: Cannot access variable before it is declared
+
+`recomputeTranslationsAndRules` is accessed before it is declared, which prevents the earlier access from updating when this value changes over time.
+
+D:\Agent\Project\Label washing\src\App.tsx:83:7
+  81 |   useEffect(() => {
+  82 |     if (parsedLabel) {
+> 83 |       recomputeTranslationsAndRules(parsedLabel);
+     |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `recomputeTranslationsAndRules` accessed before it is declared
+  84 |     }
+  85 |   }, [dict, enabledLanguages, enabledRules]);
+  86 |
+
+D:\Agent\Project\Label washing\src\App.tsx:198:3
+  196 |
+  197 |   // 鏍规嵁褰撳墠瑙ｆ瀽鐨勫疄浣擄紝鐢熸垚缈昏瘧缁撴灉鍜岄敊璇鍛婂垪琛?> 198 |   const recomputeTranslationsAndRules = (label: ParsedWashLabel) => {
+      |   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 199 |     // A. 璁＄畻鎵€鏈夊瓙鍙ョ殑缈昏瘧
+      | ^^^^^^^^^^^^^^^^^^^
+> 200 |     const allPhrases = new Set<string>();
+      鈥?      | ^^^^^^^^^^^^^^^^^^^
+> 231 |     setValidationIssues(issues);
+      | ^^^^^^^^^^^^^^^^^^^
+> 232 |   };
+      | ^^^^^ `recomputeTranslationsAndRules` is declared here
+  233 |
+  234 |   // 鏍稿績锛氫腑鏂囨礂鏍囨櫤鑳芥媶瑙ｄ笌缈昏瘧
+  235 |   const handleTranslateSingleText = async (useAI = false) => {                                       react-hooks/immutability
+   85:6   warning  React Hook useEffect has missing dependencies: 'parsedLabel' and 'recomputeTranslationsAndRules'. Either include them or remove the dependency array                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        react-hooks/exhaustive-deps
+   89:5   error    Error: Cannot access variable before it is declared
+
+`handleTranslateSingleText` is accessed before it is declared, which prevents the earlier access from updating when this value changes over time.
+
+D:\Agent\Project\Label washing\src\App.tsx:89:5
+  87 |   // 椤甸潰鍒濇鍔犺浇鏃讹紝鑷姩瑙﹀彂涓€娆℃湰鍦拌鍒欏紩鎿庤В鏋愶紝濉厖鍒濆瀹炵墿棰勮鍜岃瘝搴撹繘鍖栨暟鎹?  88 |   useEffect(() => {
+> 89 |     handleTranslateSingleText(false);
+     |     ^^^^^^^^^^^^^^^^^^^^^^^^^ `handleTranslateSingleText` accessed before it is declared
+  90 |   }, []);
+  91 |
+  92 |   const handleLlmProviderChange = (val: LLMProvider) => {
+
+D:\Agent\Project\Label washing\src\App.tsx:235:3
+  233 |
+  234 |   // 鏍稿績锛氫腑鏂囨礂鏍囨櫤鑳芥媶瑙ｄ笌缈昏瘧
+> 235 |   const handleTranslateSingleText = async (useAI = false) => {
+      |   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 236 |     if (!sourceText.trim()) return;
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 237 |     setIsTranslating(true);
+      鈥?      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 339 |     }
+      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 340 |   };
+      | ^^^^^ `handleTranslateSingleText` is declared here
+  341 |
+  342 |   // 澶勭悊鍗曞厓鏍煎嵆鏃剁紪杈戝苟鏇存柊鍒版湰鍦拌瘝搴擄紝瀹炵幇鏁版嵁鍙屽悜鎵撻€?  343 |   const handleEditCell = (cnWord: string, langCode: string, newVal: string) => {  react-hooks/immutability
+   90:6   warning  React Hook useEffect has a missing dependency: 'handleTranslateSingleText'. Either include it or remove the dependency array                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                react-hooks/exhaustive-deps
+  349:42  error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    @typescript-eslint/no-explicit-any
+  354:49  error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    @typescript-eslint/no-explicit-any
+  354:85  error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    @typescript-eslint/no-explicit-any
+  367:48  error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    @typescript-eslint/no-explicit-any
+  376:57  error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    @typescript-eslint/no-explicit-any
+  430:42  error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    @typescript-eslint/no-explicit-any
+  435:56  error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    @typescript-eslint/no-explicit-any
+
+D:\Agent\Project\Label washing\src\components\MockupLabel.tsx
+  233:7   error  'CutLine' is assigned a value but never used               @typescript-eslint/no-unused-vars
+  241:7   error  'SensorMark' is assigned a value but never used            @typescript-eslint/no-unused-vars
+  248:29  error  'setActivePreviewLang' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  251:9   error  'previewLang' is assigned a value but never used           @typescript-eslint/no-unused-vars
+  716:66  error  Unexpected any. Specify a different type                   @typescript-eslint/no-explicit-any
+
+D:\Agent\Project\Label washing\src\services\excelService.ts
+  206:53  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  236:17  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  268:53  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  335:17  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  359:23  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  367:43  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+D:\Agent\Project\Label washing\src\services\llmService.ts
+  75:37  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+鉁?25 problems (23 errors, 2 warnings)
+
